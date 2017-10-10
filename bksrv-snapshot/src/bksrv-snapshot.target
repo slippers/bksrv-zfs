@@ -13,4 +13,4 @@ Requires=zfs.target
 After=zfs.target
 
 [Install]
-WantedBy=multi-user.target, timers.target
+WantedBy=multi-user.target

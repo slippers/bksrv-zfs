@@ -48,7 +48,7 @@ enable: install
 	systemctl enable bksrv-snapshot-weekly.timer && systemctl start bksrv-snapshot-weekly.timer
 	systemctl enable bksrv-snapshot-monthly.timer && systemctl start bksrv-snapshot-monthly.timer
 	#systemctl start bksrv-snapshot@.service && systemctl start bksrv-snapshot@.service
-	systemctl start bksrv-snapshot.target
+	systemctl enable bksrv-snapshot.target && systemctl start bksrv-snapshot.target
 	systemctl daemon-reload
 .PHONY: enable
 
