@@ -2,7 +2,6 @@
 Description=bksrv-send target.
 Requires=bksrv-send.socket
 Requires=bksrv-send@.service
-
 Requires=bksrv-message.target
 
 # zfs

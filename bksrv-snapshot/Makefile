@@ -38,8 +38,8 @@ $(DESTDIR)$(SYSTEMD_HOME):
 .PHONY: $(DESTDIR)$(SYSTEMD_HOME)
 
 enable: install
-	systemctl enable bksrv-snapshot@ --now
 	systemctl start bksrv-snapshot.target
+	systemctl enable bksrv-snapshot@ --now
 	systemctl daemon-reload
 .PHONY: enable
 
