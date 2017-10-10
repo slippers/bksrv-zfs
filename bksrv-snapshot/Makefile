@@ -18,8 +18,12 @@ install: $(DESTDIR)$(SYSTEMD_HOME)
 .PHONY: install
 
 uninstall:
-	systemctl stop bksrv-snapshot.target
-	systemctl disable bksrv-snapshot.target
+	systemctl stop bksrv-snapshot.target && systemctl disable bksrv-snapshot.target
+	systemctl stop bksrv-snapshot-frequent.timer && systemctl disable bksrv-snapshot-frequent.timer
+	systemctl stop bksrv-snapshot-hourly.timer && systemctl disable bksrv-snapshot-hourly.timer
+	systemctl stop bksrv-snapshot-daily.timer && systemctl disable bksrv-snapshot-daily.timer
+	systemctl stop bksrv-snapshot-weekly.timer && systemctl disable bksrv-snapshot-weekly.timer
+	systemctl stop bksrv-snapshot-monthly.timer && systemctl disable bksrv-snapshot-monthly.timer
 	rm -i $(DESTDIR)$(PREFIX)/etc/bksrv-snapshot-environment
 	rm -f $(DESTDIR)$(PREFIX)/sbin/bksrv-snapshot.sh
 	rm -f $(DESTDIR)$(SYSTEMD_HOME)/bksrv-snapshot.target
@@ -38,8 +42,13 @@ $(DESTDIR)$(SYSTEMD_HOME):
 .PHONY: $(DESTDIR)$(SYSTEMD_HOME)
 
 enable: install
+	systemctl enable bksrv-snapshot-frequent.timer && systemctl start bksrv-snapshot-frequent.timer
+	systemctl enable bksrv-snapshot-hourly.timer && systemctl start bksrv-snapshot-hourly.timer
+	systemctl enable bksrv-snapshot-daily.timer && systemctl start bksrv-snapshot-daily.timer
+	systemctl enable bksrv-snapshot-weekly.timer && systemctl start bksrv-snapshot-weekly.timer
+	systemctl enable bksrv-snapshot-monthly.timer && systemctl start bksrv-snapshot-monthly.timer
+	#systemctl start bksrv-snapshot@.service && systemctl start bksrv-snapshot@.service
 	systemctl start bksrv-snapshot.target
-	systemctl enable bksrv-snapshot@ --now
 	systemctl daemon-reload
 .PHONY: enable
 
