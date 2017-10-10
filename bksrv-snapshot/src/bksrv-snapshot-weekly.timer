@@ -1,0 +1,8 @@
+[Unit]
+Description=bksrv-snapshot-weekly timer
+
+[Timer]
+Unit=bksrv-snapshot@weekly.service
+OnCalendar=weekly
+Persistent=true
+RandomizedDelaySec=600

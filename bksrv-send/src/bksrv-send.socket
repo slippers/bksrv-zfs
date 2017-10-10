@@ -1,0 +1,9 @@
+[Unit]
+Description=bksrv-send socket
+
+[Socket]
+Accept=yes
+ListenStream=9999
+
+[Install]
+WantedBy=multi-user.target

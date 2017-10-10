@@ -1,0 +1,9 @@
+[Unit]
+Description=bksrv-message for %I 
+
+[Service]
+Type=oneshot
+User=nobody
+Group=systemd-journal
+EnvironmentFile=/usr/local/etc/bksrv-message-environment
+ExecStart=/usr/local/sbin/bksrv-message.sh ${EMAIL} %i

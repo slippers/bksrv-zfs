@@ -1,0 +1,6 @@
+[Unit]
+Description=bksrv-message target
+Requires=bksrv-message@.service
+
+[Install]
+WantedBy=multi-user.target

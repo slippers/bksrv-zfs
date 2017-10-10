@@ -1,0 +1,28 @@
+check if the bksrv-message service is running before install
+
+after a send completes send a message
+
+when socket is terminated and stream is in progress how to shutdown
+
+email on error
+
+configure ip:port
+
+configure ip access
+
+when service is enabled require zfs, network
+
+disable during a zfs scrub
+
+----
+
+# backup client
+
+for each pool@host-frequency to backup
+
+    `snapshot=$(echo "-f $frequency -p $pool" | nc $host 9999)`
+    if snapshot not already in backup zfs -> continue 
+
+    `echo "-f $frequency -p $pool -s" | nc $host 9999 | zfs recieve $pool`
+
+    

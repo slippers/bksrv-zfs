@@ -1,0 +1,16 @@
+[Unit]
+Description=bksrv-send service instance:%I service=%n
+Requires=bksrv-send.socket
+After=network.target, zfs.target 
+OnFailure=bksrv-message@%n.service
+
+[Service]
+Type=simple
+StandardInput=socket
+StandardError=journal
+TimeoutStopSec=5
+EnvironmentFile=/usr/local/etc/bksrv-send-environment
+ExecStart=/bin/bash /usr/local/sbin/bksrv-send.sh %i
+
+[Install]
+WantedBy=multi-user.target

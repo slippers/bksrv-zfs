@@ -1,0 +1,16 @@
+[Unit]
+Description=bksrv-snapshot-snapshot target
+Requires=bksrv-snapshot-frequent.timer
+Requires=bksrv-snapshot-daily.timer
+Requires=bksrv-snapshot-hourly.timer
+Requires=bksrv-snapshot-weekly.timer
+Requires=bksrv-snapshot-monthly.timer
+Requires=bksrv-snapshot@.service
+Requires=bksrv-message.target
+
+# zfs
+Requires=zfs.target
+After=zfs.target
+
+[Install]
+WantedBy=multi-user.target, timers.target

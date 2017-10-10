@@ -1,0 +1,8 @@
+[Unit]
+Description=bksrv-snapshot-monthly timer
+
+[Timer]
+Unit=bksrv-snapshot@monthly.service
+OnCalendar=monthly
+Persistent=true
+RandomizedDelaySec=600

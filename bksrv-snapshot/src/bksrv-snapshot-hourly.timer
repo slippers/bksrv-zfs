@@ -1,0 +1,8 @@
+[Unit]
+Description=bksrv-snapshot-hourly timer
+
+[Timer]
+Unit=bksrv-snapshot@hourly.service
+OnCalendar=hourly
+Persistent=true
+RandomizedDelaySec=59

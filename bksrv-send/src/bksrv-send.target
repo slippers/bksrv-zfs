@@ -1,0 +1,13 @@
+[Unit]
+Description=bksrv-send target.
+Requires=bksrv-send.socket
+Requires=bksrv-send@.service
+
+Requires=bksrv-message.target
+
+# zfs
+Requires=zfs.target
+After=zfs.target
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,8 @@
+[Unit]
+Description=bksrv-snapshot-frequent timer
+
+[Timer]
+Unit=bksrv-snapshot@frequent.service
+OnCalendar=*:0/15
+Persistent=true
+RandomizedDelaySec=60
