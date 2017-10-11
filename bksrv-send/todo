@@ -18,6 +18,8 @@ disable during a zfs scrub
 
 # backup client
 
+$host=localhost
+
 for each pool@host-frequency to backup
 
     `snapshot=$(echo "-f $frequency -p $pool" | nc $host 9999)`
