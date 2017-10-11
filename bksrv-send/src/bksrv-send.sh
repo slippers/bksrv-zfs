@@ -9,7 +9,6 @@ printf %q "params:${@}" | logger
 backup=(frequent hourly daily weekly monthly)
 actions=(list send increamental)
 action=${actions[0]}
-increamental=""
 
 usage() {
     echo "Usage: $0 [-f frequency=${backup[*]}] [-p pool] [-s send snapshot] [-i increamental snapshot]"
@@ -27,10 +26,11 @@ do
             ;;
         s)
             action=${actions[1]}
+            snapshot=${OPTARG}
             ;;
         i)
             action=${actions[2]}
-            increamental=${OPTARG}
+            snapshot=${OPTARG}
             ;;
         *)
             usage
@@ -48,12 +48,16 @@ if [ -z "${pool}" ]; then
     usage
 fi
 
-snapshot=`zfs list -t snapshot -o name -s creation -r $pool | grep $frequency | tail -1`
+newestsnapshot=`zfs list -t snapshot -o name -s creation -r $pool | grep $frequency | tail -1`
 
+if [ -x ${snapshot} ]
+then
+    $snapshot = $newestsnapshot
+fi
 
 if [ "$action" == "${actions[0]}" ]
 then
-    echo "$snapshot"
+    echo "$newestsnapshot"
 fi
 
 if [ "$action" == "${actions[1]}" ]
@@ -63,5 +67,5 @@ fi
 
 if [ "$action" == "${actions[3]}" ]
 then
-    zfs send -R -i $increamental $snapshot
+    zfs send -R -i $snapshot $newestsnapshot
 fi
