@@ -1,6 +1,5 @@
 [Unit]
 Description=bksrv-send service instance:%I service=%n
-Requires=bksrv-send.socket
 OnFailure=bksrv-message@%n.service
 
 [Service]

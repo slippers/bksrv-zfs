@@ -14,8 +14,8 @@ install: $(DESTDIR)$(SYSTEMD_HOME)
 .PHONY: install
 
 uninstall:
-	systemctl stop bksrv-send.socket
-	systemctl disable bksrv-send.socket
+	systemctl stop bksrv-send.target && systemctl disable bksrv-send.target
+	systemctl stop bksrv-send.socket && systemctl disable bksrv-send.socket
 	rm -i $(DESTDIR)$(PREFIX)/etc/bksrv-send-environment
 	rm -f $(DESTDIR)$(PREFIX)/sbin/bksrv-send.sh
 	rm -f $(DESTDIR)$(SYSTEMD_HOME)/bksrv-send.socket
@@ -29,9 +29,8 @@ $(DESTDIR)$(SYSTEMD_HOME):
 .PHONY: $(DESTDIR)$(SYSTEMD_HOME)
 
 enable: install
-	systemctl start bksrv-send.target
-	#systemctl enable --now bksrv-send.socket
-	#systemctl start bksrv-send.socket
+	systemctl enable bksrv-send.socket && systemctl start bksrv-send.socket
+	systemctl enable bksrv-send.target && systemctl start bksrv-send.target
 	systemctl daemon-reload 
 .PHONY: enable
 
