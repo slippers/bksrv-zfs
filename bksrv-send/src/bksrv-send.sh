@@ -65,7 +65,7 @@ then
     zfs send -R $snapshot
 fi
 
-if [ "$action" == "${actions[3]}" ]
+if [ "$action" == "${actions[2]}" ]
 then
     zfs send -R -i $snapshot $newestsnapshot
 fi

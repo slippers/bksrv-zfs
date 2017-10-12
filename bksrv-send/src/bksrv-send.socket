@@ -3,7 +3,7 @@ Description=bksrv-send socket
 
 [Socket]
 Accept=yes
-ListenStream=127.0.0.1:9999
+ListenStream=9999
 
 [Install]
 WantedBy=multi-user.target
