@@ -73,13 +73,28 @@ if [ -z "$frequency" ]; then
     exit 1
 fi
 
-
-echo "server=$server port=$port pool=$pool"
+echo "server=$server port=$port pool=$pool frequency=$frequency"
 
 local_snapshot=$(zfs list -t snapshot -o name -s creation -r $pool | grep $frequency | tail -1)
-echo $local_snapshot
+
 remote_snapshot=$(echo "-f $frequency -p $pool" | nc $server $port)
-echo $remote_snapshot
+
+echo "local_snapshot=$local_snapshot"
+echo "remote_snapshot=$remote_snapshot"
+
+if ! [ "$remote_snapshot" ]
+then
+    echo "remote snapshot not found."
+    exit 1
+fi
+
+if ! [ "$local_snapshot" ]
+then
+    echo "local_snapshot not found. attempting full send."
+    # does local pool exist?
+    echo "-f $frequency -p $pool -s $remote_snapshot" | nc $server $port | zfs receive $pool
+    exit
+fi
 
 if ! [ "$local_snapshot" == "$remote_snapshot" ]
 then
