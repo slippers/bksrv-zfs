@@ -1,0 +1,9 @@
+[Unit]
+Description=bksrv-client target.
+Requires=bksrv-message.target
+
+# zfs
+Requires=zfs.target
+
+[Install]
+WantedBy=multi-user.target

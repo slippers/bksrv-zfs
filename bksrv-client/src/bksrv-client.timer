@@ -1,0 +1,8 @@
+[Unit]
+Description=bksrv-client timer
+
+[Timer]
+Unit=bksrv-client.service
+OnCalendar=daily
+Persistent=true
+RandomizedDelaySec=600

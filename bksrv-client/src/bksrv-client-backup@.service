@@ -1,0 +1,11 @@
+[Unit]
+Description=bksrv-client-backup %I service=%n
+# bksrv-message
+# passing %n the name of the service
+# as the argument to the status-email-user serivce
+OnFailure=bksrv-message@%n.service
+
+[Service]
+Type=oneshot
+EnvironmentFile=/usr/local/etc/bksrv-client-environment
+ExecStart=/usr/local/sbin/bksrv-client-backup.sh -p ${BACKUP_POOLS} -i %i

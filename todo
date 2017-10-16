@@ -1,0 +1,27 @@
+
+
+### make file params
+
+how to call make with required params
+is that using a config file? or command args
+adjust stuff like port, email
+
+
+check if the bksrv-message service is running before install
+
+after a send completes send a message
+
+when socket is terminated and stream is in progress how to shutdown
+
+email on error
+
+configure ip:port
+
+configure ip access
+
+when service is enabled require zfs, network
+
+disable during a zfs scrub
+
+----
+
