@@ -93,11 +93,16 @@ then
     echo "local_snapshot not found. attempting full send."
     # does local pool exist?
     echo "-f $frequency -p $pool -s $remote_snapshot" | nc $server $port | zfs receive $pool
+    echo "full send complete."
     exit
 fi
 
 if ! [ "$local_snapshot" == "$remote_snapshot" ]
 then
+    echo "rolling back any changes for $pool to $local_snapshot"
+    zfs rollback $local_snapshot
     echo "incremental $local_snapshot => $remote_snapshot"
     echo "-f $frequency -p $pool -i $local_snapshot" | nc $server $port | zfs receive $pool
+    echo "incremental complete."
+    exit
 fi
