@@ -47,6 +47,7 @@ status:
 	systemctl list-unit-files bksrv-client.target --all
 	systemctl list-timers bksrv-client* --all
 	test -f $(DESTDIR)$(PREFIX)/etc/bksrv-client-environment && cat $(DESTDIR)$(PREFIX)/etc/bksrv-client-environment
+	test -f $(DESTDIR)$(PREFIX)/etc/bksrv-client-pools && cat $(DESTDIR)$(PREFIX)/etc/bksrv-client-pools
 .PHONY:
 
 
