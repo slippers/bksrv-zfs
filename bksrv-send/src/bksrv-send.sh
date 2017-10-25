@@ -1,13 +1,15 @@
 #!/bin/bash
 
+# arguments are echoed into this script
 read -r args
 
+# place the read arguments into the script arguments
 set -- $args "$@"
 
 printf %q "params:${@}" | logger
 
 backup=(frequent hourly daily weekly monthly)
-actions=(list send increamental)
+actions=(list send increamental report)
 action=${actions[0]}
 
 usage() {
@@ -68,4 +70,10 @@ fi
 if [ "$action" == "${actions[2]}" ]
 then
     zfs send -R -i $snapshot $newestsnapshot
+fi
+
+if [ "$action" == "${actions[3]}" ]
+then
+    echo "report"
+    # zfs list -t snapshot -o name | awk...
 fi
