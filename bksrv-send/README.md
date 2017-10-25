@@ -56,11 +56,10 @@ will print out the latest snapshot for the given frequency and pool
 
 will send a zfs send snapshot back which can be consumed by `zfs recieve`
 
-### modifications
+### firewall configuration
 
-ip and port
-ip connection restrictions
+configure to only allow local subnet ip to the open port
 
-
+`sudo ufw allow from 192.168.0.0/24 to any port 9999`
 
 

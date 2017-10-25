@@ -5,10 +5,10 @@ all:
 .PHONY: all
 
 install: $(DESTDIR)$(SYSTEMD_HOME)
-	install -C -m 0755 src/bksrv-client-environment $(DESTDIR)$(PREFIX)/etc/bksrv-client-environment 
-	install -C -m 0755 src/bksrv-client-pools $(DESTDIR)$(PREFIX)/etc/bksrv-client-pools 
-	install -m 0755 src/bksrv-client.sh $(DESTDIR)$(PREFIX)/sbin/bksrv-client.sh 
-	install -m 0755 src/bksrv-client-backup.sh $(DESTDIR)$(PREFIX)/sbin/bksrv-client-backup.sh 
+	install -C --backup -m 0755 src/bksrv-client-environment $(DESTDIR)$(PREFIX)/etc/bksrv-client-environment
+	install -C --backup -m 0755 src/bksrv-client-pools $(DESTDIR)$(PREFIX)/etc/bksrv-client-pools
+	install -m 0755 src/bksrv-client.sh $(DESTDIR)$(PREFIX)/sbin/bksrv-client.sh
+	install -m 0755 src/bksrv-client-backup.sh $(DESTDIR)$(PREFIX)/sbin/bksrv-client-backup.sh
 	install -m 0644 -t $(DESTDIR)$(SYSTEMD_HOME) \
 		src/bksrv-client.target \
 		src/bksrv-client.timer \

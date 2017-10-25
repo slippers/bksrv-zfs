@@ -16,6 +16,11 @@ spawn a service template.
 
 another service template to process the backup request
 
+### firewall
+
+allow any ip on subnet to access port 9999
+
+`sudo ufw allow from 192.168.0.0/24 to any port 9999`
 
 ### backup exchange
 
