@@ -1,9 +1,0 @@
-get pool list to backup from the send service
-
-add -r to send service to create list of pool to backup
-
-zfs reports that incremental won't work for pools that have changed?  read only mode needed?
-
-client to generate report on time taken to do backup
-
-send and snapshot need to detect if scrup in progress
